@@ -1,0 +1,110 @@
+---
+const links = [
+  { href: "#experience", label: "Experience" },
+  { href: "#signature", label: "Signature" },
+  { href: "#environment", label: "Environment" },
+  { href: "#menu", label: "Menu" },
+  { href: "#reservation", label: "Reservation" },
+];
+---
+
+<header id="siteHeader" class="header-glass fixed inset-x-0 top-0 z-50">
+  <div
+    class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 lg:px-6"
+  >
+    <a
+      href="#top"
+      class="group inline-flex items-center gap-3"
+      aria-label="Go to top"
+    >
+      <div
+        class="grid h-10 w-10 place-items-center rounded-xl border border-paper-100/10 bg-pine-950/35 backdrop-blur-md"
+      >
+        <span
+          class="font-display text-lg font-semibold tracking-[0.06em] text-copper-300"
+          >L</span
+        >
+      </div>
+      <div class="leading-tight">
+        <div
+          class="font-display text-sm font-semibold tracking-[0.14em] text-paper-50"
+        >
+          Lounge
+        </div>
+        <div class="text-xs text-paper-100/60">Premium Restaurant</div>
+      </div>
+    </a>
+
+    <nav class="hidden items-center gap-7 text-sm text-paper-100/70 lg:flex" data-stagger>
+      {
+        links.map((l) => (
+          <a class="nav-link transition hover:text-paper-50" href={l.href}>
+            {l.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        data-magnetic="true"
+        href="#reservation"
+        class="hidden rounded-full border border-copper-400/35 bg-pine-950/35 px-4 py-2 text-sm text-paper-50/90 backdrop-blur-md transition hover:border-copper-400/60 lg:inline-flex"
+      >
+        Book a Table
+      </a>
+
+      <button
+        class="inline-flex items-center justify-center rounded-full border border-paper-100/10 bg-pine-950/35 px-3 py-2 text-sm text-paper-100/85 backdrop-blur-md lg:hidden"
+        aria-label="Open menu"
+        id="mobileMenuBtn"
+        type="button"
+      >
+        ☰
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobileMenu"
+    class="hidden border-t border-paper-100/10 bg-pine-950/65 backdrop-blur-md lg:hidden"
+  >
+    <div class="mx-auto max-w-6xl px-4 py-3">
+      <div class="grid gap-2 text-sm">
+        {
+          links.map((l) => (
+            <a
+              class="rounded-lg px-3 py-2 text-paper-100/85 hover:bg-paper-100/5"
+              href={l.href}
+            >
+              {l.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      const header = document.getElementById("siteHeader");
+      const btn = document.getElementById("mobileMenuBtn");
+      const menu = document.getElementById("mobileMenu");
+
+      // mobile toggle
+      btn?.addEventListener("click", () => {
+        menu?.classList.toggle("hidden");
+      });
+
+      // frosted glass on scroll
+      const onScroll = () => {
+        if (!header) return;
+        header.classList.toggle("is-scrolled", window.scrollY > 20);
+      };
+
+      onScroll(); // run once on load
+      window.addEventListener("scroll", onScroll, { passive: true });
+    });
+  </script>
+</header>

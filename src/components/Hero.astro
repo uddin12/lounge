@@ -1,0 +1,85 @@
+---
+const heroImages = [
+  "/assets/food/food-01.avif",
+  "/assets/food/food-15.avif",
+  "/assets/food/food-32.avif",
+  "/assets/food/food-21.avif",
+  "/assets/food/food-12.avif",
+];
+---
+
+<section
+  id="top"
+  class="relative min-h-[52vh] overflow-hidden pt-16 sm:min-h-[56vh] lg:min-h-[58vh] lg:pt-20"
+>
+  <!-- Background image layers -->
+  <div class="absolute inset-0">
+    {
+      heroImages.map((src, i) => (
+        <div
+          class={`hero-bg absolute inset-0 bg-center bg-cover transition-opacity duration-[1400ms] ease-in-out ${
+            i === 0 ? "opacity-100" : "opacity-0"
+          }`}
+          style={`background-image:url(${src})`}
+          data-hero-bg
+        />
+      ))
+    }
+
+    <!-- Softer overlays -->
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-pine-950/85"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(211,153,105,0.14),transparent_66%)]"
+    >
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative mx-auto max-w-6xl px-4 py-14 lg:px-6 lg:py-20">
+    <div class="max-w-2xl">
+      <p
+        class="reveal inline-flex items-center gap-2 rounded-full border border-copper-400/25 bg-pine-950/25 px-4 py-2 text-xs tracking-wide text-paper-100/85 backdrop-blur-md"
+      >
+        <span class="h-1.5 w-1.5 rounded-full bg-copper-400"></span>
+        Cozy fine dining • Premium lounge ambience
+      </p>
+
+      <h1
+        class="reveal mt-5 font-display text-4xl font-semibold tracking-[0.01em] text-paper-50 sm:text-5xl lg:text-6xl"
+      >
+        Where dining meets a
+        <span class="text-gold-gradient"> lounge </span>
+        experience.
+      </h1>
+
+      <p
+        class="reveal mt-4 text-base leading-relaxed text-paper-100/75 sm:text-lg"
+      >
+        A curated menu, warm lighting, and a refined atmosphere — designed for
+        quiet conversations, celebrations, and unforgettable evenings.
+      </p>
+
+      <div class="reveal mt-7 flex flex-wrap items-center gap-3">
+        <a href="#reservation" class="btn-primary"> Reserve a Table </a>
+        <a href="#menu" class="btn-ghost"> Explore Menu </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background image transition -->
+  <script>
+    const slides = Array.from(document.querySelectorAll("[data-hero-bg]"));
+
+    let current = 0;
+    const total = slides.length;
+
+    setInterval(() => {
+      slides[current].classList.replace("opacity-100", "opacity-0");
+      current = (current + 1) % total;
+      slides[current].classList.replace("opacity-0", "opacity-100");
+    }, 6500);
+  </script>
+</section>

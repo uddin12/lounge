@@ -1,0 +1,20 @@
+---
+import '../styles/global.css';
+const { title = 'Lounge', description = 'Premium Restaurant Lounge' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0b1616" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    <script type="module" src="/scripts/reveal.js"></script>
+    <script type="module" src="/scripts/magnetic.js"></script>
+  </body>
+</html>

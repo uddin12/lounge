@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Signature from "../components/Signature.astro";
+import Environment from "../components/Environment.astro";
+import Menu from "../components/Menu.astro";
+import ReservationForm from "../components/ReservationForm.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="Lounge | Premium Restaurant"
+  description="Premium restaurant lounge landing page"
+>
+  <div class="grain">
+    <Header />
+    <main class="snap-y">
+      <div class="snap-start">
+        <Hero />
+      </div>
+      <div class="snap-start">
+        <Signature />
+      </div>
+      <div class="snap-start">
+        <Environment />
+      </div>
+      <div class="snap-start">
+        <Menu />
+      </div>
+      <div class="snap-start">
+        <ReservationForm />
+      </div>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>
